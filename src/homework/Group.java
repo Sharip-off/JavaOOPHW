@@ -2,6 +2,7 @@ package homework;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 public class Group {
     private String groupName;
@@ -72,5 +73,19 @@ public class Group {
             }
         }
         return groupInfo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Group group)) return false;
+        return Objects.equals(getGroupName(), group.getGroupName()) && Arrays.equals(getStudents(), group.getStudents());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(getGroupName());
+        result = 31 * result + Arrays.hashCode(getStudents());
+        return result;
     }
 }

@@ -1,5 +1,7 @@
 package homework;
 
+import java.util.Objects;
+
 public class Human {
     private String name;
     private String lastName;
@@ -44,5 +46,17 @@ public class Human {
     @Override
     public String toString() {
         return "Human{" + "name='" + name + '\'' + ", lastName='" + lastName + '\'' + ", gender=" + gender + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Human human)) return false;
+        return Objects.equals(getName(), human.getName()) && Objects.equals(getLastName(), human.getLastName()) && getGender() == human.getGender();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLastName(), getGender());
     }
 }

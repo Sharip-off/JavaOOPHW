@@ -39,7 +39,7 @@ public class Group {
     public Student searchStudentByLastName(String lastName) throws StudentNotFoundException {
         for (int i = 0; i < students.length; i++) {
             if (students[i] != null) {
-                if (students[i].getLastName().equals(lastName)){
+                if (students[i].getLastName().equals(lastName)) {
                     return students[i];
                 }
             }
@@ -59,8 +59,25 @@ public class Group {
         }
         return false;
     }
-    public void sortStudentByLastName(){
+
+    public void sortStudentByLastName() {
         Arrays.sort(students, Comparator.nullsLast(new StudentLastNameComparator()));
+    }
+
+    public boolean checkEquivalentStudent() {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] != null) {
+                for (int j = i + 1; j < students.length; j++) {
+                    if (students[j] != null) {
+                        if (students[i].equals(students[j])) {
+                            System.out.println(students[i] + " == " + students[j]);
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 
